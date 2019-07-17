@@ -7,16 +7,14 @@
   "directories": {
     "test": "tests"
   },
-  "bin": {
-    "ts-react-project": "./bin/ts-react-project"
-  },
   "scripts": {
     "start": "npm run client:server",
     "test": "echo 2",
     "build": "npm run client:prod",
     "client:dev": "scripty",
     "client:server": "scripty",
-    "client:prod": "scripty"
+    "client:prod": "scripty",
+    "pub": "sh release.sh"
   },
   "keywords": [],
   "author": "",
