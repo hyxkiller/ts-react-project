@@ -6,9 +6,10 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 module.exports = {
     mode: 'development',
     devtool: "cheap-module-eval-source-map",
-    // output: {
-    //     sourceMapFilename: "[name].js",
-    // },
+    output: {
+        publicPath: '/',
+        // sourceMapFilename: "[name].js",
+    },
     devServer: {
         historyApiFallback: true,
         // contentBase: join(__dirname, '../dist'),
