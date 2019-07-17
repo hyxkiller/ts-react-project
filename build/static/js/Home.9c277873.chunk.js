@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{i69X:function(e,t,a){e.exports=a.p+"static/media/BTC.ce95469a.jpeg"},nmqg:function(e,t,a){"use strict";a.r(t);var c=a("q1tI");const n=a("i69X");t.default=()=>c.createElement("div",{className:"red"},c.createElement("img",{src:n,alt:""}),"Home")}}]);

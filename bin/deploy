@@ -1,0 +1,10 @@
+#!/usr/local/bin/node
+const json2ts = require('json2ts');
+const result = {
+    data: 'hello',
+    result: {
+        title: 'world'
+    }
+}
+const res = json2ts.convert(JSON.stringify(result));
+console.log(res);
