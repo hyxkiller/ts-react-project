@@ -13,8 +13,7 @@
     "build": "npm run client:prod",
     "client:dev": "scripty",
     "client:server": "scripty",
-    "client:prod": "scripty",
-    "pub": "sh release.sh"
+    "client:prod": "scripty"
   },
   "keywords": [],
   "author": "",
