@@ -8,21 +8,11 @@ module.exports = {
     devtool: "cheap-module-eval-source-map",
     output: {
         publicPath: '/',
-        // sourceMapFilename: "[name].js",
     },
     devServer: {
         historyApiFallback: true,
         // contentBase: join(__dirname, '../dist'),
-        proxy: {
-            '/api': {
-                target: 'http://47.92.88.235:8082/',
-                changeOrigin: true,
-                secure: false,
-                pathRewrite: {
-                    "^/api": ""
-                }
-            },
-        },
+        proxy: {},
         // host: "0.0.0.0",
         hot: true,
         port: '7000',

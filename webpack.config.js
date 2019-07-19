@@ -10,6 +10,8 @@ const { CheckerPlugin } = require('awesome-typescript-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const _modeflag = (_mode == 'production' ? true : false);
 
 const webpackConfig = {
 	entry: {
@@ -35,37 +37,11 @@ const webpackConfig = {
 				test: /\.css$/,
 				use: [
 					{
-						loader: "style-loader",
-						options: {
-							hmr: true
-						}
+						loader: _modeflag ? MiniCssExtractPlugin.loader : 'style-loader',
 					},
 					{
-						loader: "css-loader",
-						//     options: {
-						//         importLoaders: 1,
-						//         minimize: true,
-						//         sourceMap: true,
-						//     }
-					},
-					{
-						loader: 'postcss-loader',
-						options: {
-							ident: 'postcss',
-							plugins: () => [
-								require('postcss-flexbugs-fixes'),
-								autoprefixer({
-									browsers: [
-										'>1%',
-										'last 4 versions',
-										'Firefox ESR',
-										'not ie < 9', // React doesn't support IE8 anyway
-									],
-									flexbox: 'no-2009',
-								}),
-							],
-						},
-					},
+						loader: 'css-loader'
+					}
 				]
 			},
 			{
@@ -81,7 +57,10 @@ const webpackConfig = {
 			},
 			{
 				test: /\.scss$/,
-				loaders: ['style-loader', 'css-loader', 'sass-loader'],
+				loaders: [
+					{
+						loader: _modeflag ? MiniCssExtractPlugin.loader : 'style-loader',
+					}, 'css-loader', 'sass-loader'],
 				include: [resolve('src')],
 				exclude: /node_nodules/,
 			}
@@ -93,11 +72,12 @@ const webpackConfig = {
 	plugins: [
 		new CheckerPlugin(),
 		new HtmlWebpackPlugin({
-			template: './src/web/index.html',
+			template: join(__dirname, '/src/web/index.html'),
+			filename: 'index.html',
 			inject: true,
 			minify: {
-				removeComments: true,
-				collapseWhitespace: true,
+				removeComments: true, // 移除注释
+				collapseWhitespace: true, // 合并空格
 				removeRedundantAttributes: true,
 				useShortDoctype: true,
 				removeEmptyAttributes: true,
@@ -111,6 +91,10 @@ const webpackConfig = {
 		new WorkboxPlugin.GenerateSW({
 			clientsClaim: true,
 			skipWaiting: true,
+		}),
+		new MiniCssExtractPlugin({
+			filename: _modeflag ? 'styles/[name].[hash:5].css' : 'styles/[name].css',
+			chunkFilename: _modeflag ? 'styles/[name].[hash:5].css' : 'styles/[name].css',
 		}),
 		new webpack.HashedModuleIdsPlugin(),
 	]

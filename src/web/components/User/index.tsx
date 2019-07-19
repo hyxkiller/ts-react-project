@@ -1,7 +1,8 @@
 import * as React from 'react';
+import './index.css';
 
 const User = () => {
-    return <div>User</div>
+    return <div className="user" style={{fontSize: 20,}}>User</div>
 }
 
 // import { observer, useObservable, useObserver } from "mobx-react-lite"
