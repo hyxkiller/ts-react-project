@@ -1,6 +1,5 @@
 {
-  "name": "ts-react",
-  "sideEffects": false,
+  "name": "ts-react-project",
   "version": "0.0.2",
   "description": "",
   "main": "webpack.config.js",
@@ -8,11 +7,10 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "npm run client:server",
+    "start": "npm run client:dev",
     "test": "echo 2",
     "build": "npm run client:prod",
     "client:dev": "scripty",
-    "client:server": "scripty",
     "client:prod": "scripty"
   },
   "keywords": [],

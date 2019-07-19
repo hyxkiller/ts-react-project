@@ -5,7 +5,6 @@ import * as React from 'react';
 // }
 
 import { observer, useObservable, useObserver } from "mobx-react-lite"
-import './index.scss';
 const { useRef, useCallback } = React;
 
 
@@ -21,7 +20,7 @@ const Banner = () => {
     }, [])
 
     return useObserver(() => (
-        <div className="out">
+        <div>
             {Array.from(todos).map(([todo, done]) => (
                 <div onClick={() => toggleTodo(todo)} key={todo}>
                     {todo}

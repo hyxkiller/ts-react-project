@@ -11,7 +11,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const _modeflag = (_mode == 'production' ? true : false);
+const _modeflag = _mode == 'production';
 
 const webpackConfig = {
 	entry: {
@@ -41,7 +41,25 @@ const webpackConfig = {
 					},
 					{
 						loader: 'css-loader'
-					}
+					},
+					{
+						loader: require.resolve('postcss-loader'),
+						options: {
+							ident: 'postcss',
+							plugins: () => [
+								require('postcss-flexbugs-fixes'),
+								autoprefixer({
+									browsers: [
+										'>1%',
+										'last 4 versions',
+										'Firefox ESR',
+										'not ie < 9', // React doesn't support IE8 anyway
+									],
+									flexbox: 'no-2009',
+								}),
+							],
+						},
+					},
 				]
 			},
 			{
@@ -93,8 +111,8 @@ const webpackConfig = {
 			skipWaiting: true,
 		}),
 		new MiniCssExtractPlugin({
-			filename: _modeflag ? 'styles/[name].[hash:5].css' : 'styles/[name].css',
-			chunkFilename: _modeflag ? 'styles/[name].[hash:5].css' : 'styles/[name].css',
+			filename: _modeflag ? 'static/css/[name].[hash:5].css' : 'styles/[name].css',
+			chunkFilename: _modeflag ? 'static/css/[name].[hash:5].css' : 'styles/[name].css',
 		}),
 		new webpack.HashedModuleIdsPlugin(),
 	]
